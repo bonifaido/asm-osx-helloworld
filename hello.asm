@@ -20,7 +20,7 @@ kernel:
 _main:
     mov eax, 4         ; SYS_write instruction
     push dword len     ; push len onto stack
-    push dword msg     ; push len onto stack
+    push dword msg     ; push msg onto stack
     push dword 1       ; push stdout onto stack
     call kernel        ; make the system call (this is a direct OS call not C)
     add esp, 12        ; clean up the stack
