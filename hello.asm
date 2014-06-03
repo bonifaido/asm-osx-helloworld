@@ -16,12 +16,14 @@ hello_world:
     syscall            ; make the system call (this is a direct OS call not C)
     ret
 
-_main:
-    call hello_world
-
+exit:
     mov rax, 0x2000001 ; sys_exit
     mov rdi, 0         ; exit code
     syscall
+
+_main:
+    call hello_world
+    call exit
 
 message:   db    "Hello World!", 0x0a ; string with a carriage-return
 length:    equ   $-message    ; "$" means "here", len is a value, not an address
