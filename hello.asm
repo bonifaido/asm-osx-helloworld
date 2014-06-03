@@ -8,12 +8,16 @@
 
 global _main           ; make _main label available to linker
 
-_main:
+hello_world:
     mov rax, 0x2000004 ; sys_write
     mov rdi, 1         ; stdout
     mov rsi, message   ; message address
     mov rdx, length    ; message string length
     syscall            ; make the system call (this is a direct OS call not C)
+    ret
+
+_main:
+    call hello_world
 
     mov rax, 0x2000001 ; sys_exit
     mov rdi, 0         ; exit code
